@@ -4,38 +4,35 @@ const redirects = require('./redirects')
 
 const nextConfig = {
   typescript: {
+    // Ignore TypeScript build errors
     ignoreBuildErrors: true
   },
-  reactStrictMode: true,
-  swcMinify: true,
+  reactStrictMode: true, // Enable React Strict Mode
+  swcMinify: true, // Use SWC for minification
   images: {
     domains: ['localhost', process.env.NEXT_PUBLIC_SERVER_URL]
-      .filter(Boolean)
-      .map(url => url.replace(/https?:\/\//, '')),
+      .filter(Boolean) // Remove any falsy values from the array
+      .map(url => url.replace(/https?:\/\//, '')), // Remove protocol from URL
   },
   redirects,
   async headers() {
     const headers = []
 
     // Prevent search engines from indexing the site if it is not live
-    // This is useful for staging environments before they are ready to go live
-    // To allow robots to crawl the site, use the `NEXT_PUBLIC_IS_LIVE` env variable
-    // You may want to also use this variable to conditionally render any tracking scripts
+    // Useful for staging environments before they are ready to go live
     if (!process.env.NEXT_PUBLIC_IS_LIVE) {
       headers.push({
+        source: '/:path*',
         headers: [
           {
             key: 'X-Robots-Tag',
             value: 'noindex',
           },
         ],
-        source: '/:path*',
       })
     }
 
     // Set the `Content-Security-Policy` header as a security measure to prevent XSS attacks
-    // It works by explicitly whitelisting trusted sources of content for your website
-    // This will block all inline scripts and styles except for those that are allowed
     headers.push({
       source: '/(.*)',
       headers: [
