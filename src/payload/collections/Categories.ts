@@ -15,9 +15,9 @@ const Categories: CollectionConfig = {
       required: true,
     },
     {
-      name: "media",
-      type: "upload",
-      relationTo: "media"
+      name: 'media',
+      type: 'upload',
+      relationTo: 'media',
     },
   ],
 }
