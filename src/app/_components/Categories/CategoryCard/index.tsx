@@ -1,8 +1,10 @@
-"use client";
+'use client'
 import Link from 'next/link'
-import classes from './index.module.scss'
+
 import { Category, Media } from '../../../../payload/payload-types'
 import { useFilter } from '../../../_providers/Filter'
+
+import classes from './index.module.scss'
 
 type CategoryCardProps = {
   category: Category

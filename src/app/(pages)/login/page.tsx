@@ -1,5 +1,7 @@
 import React from 'react'
 import { Metadata } from 'next'
+import Image from 'next/image'
+import Link from 'next/link'
 
 import { Gutter } from '../../_components/Gutter'
 import { RenderParams } from '../../_components/RenderParams'
@@ -8,8 +10,6 @@ import { mergeOpenGraph } from '../../_utilities/mergeOpenGraph'
 import LoginForm from './LoginForm'
 
 import classes from './index.module.scss'
-import Link from 'next/link'
-import Image from 'next/image'
 // import hand from "../../../../public/asstes/icons/hand.png"
 
 export default async function Login() {
@@ -21,7 +21,13 @@ export default async function Login() {
     <section className={classes.login}>
       <div className={classes.heroImg}>
         <Link href="/">
-          <Image src="/logo-black.svg" alt="logo" width={250} height={23} className={classes.logo} />
+          <Image
+            src="/logo-black.svg"
+            alt="logo"
+            width={250}
+            height={23}
+            className={classes.logo}
+          />
         </Link>
       </div>
       <div className={classes.formWrapper}>
@@ -30,7 +36,7 @@ export default async function Login() {
 
           <div className={classes.formTitle}>
             <h3>Welcome</h3>
-            <Image src="/assets/icons/hand.png" alt='hend' width={30} height={30} />
+            <Image src="/assets/icons/hand.png" alt="hend" width={30} height={30} />
           </div>
 
           <p>Please login here</p>

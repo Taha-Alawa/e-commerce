@@ -1,5 +1,6 @@
-"use client";
-import { useState, useEffect } from 'react';
+'use client'
+import { useEffect, useState } from 'react'
+
 import classes from './index.module.scss'
 
 const Promotion = () => {
@@ -8,7 +9,7 @@ const Promotion = () => {
     hours: 0,
     minutes: 0,
     seconds: 0,
-  });
+  })
 
   const targetDate = new Date()
   targetDate.setDate(targetDate.getDate() + 3)
@@ -36,7 +37,6 @@ const Promotion = () => {
     }
   }, [])
 
-
   return (
     <section className={classes.promotion}>
       <div className={classes.textBox}>
@@ -47,10 +47,10 @@ const Promotion = () => {
           choices and amazing deals. Don't miss out! 🎁🛒
         </p>
         <ul className={classes.stats}>
-          <StatBox label='Days' value={time.days} />
-          <StatBox label='Hours' value={time.hours} />
-          <StatBox label='Minutes' value={time.minutes} />
-          <StatBox label='Seconds' value={time.seconds} />
+          <StatBox label="Days" value={time.days} />
+          <StatBox label="Hours" value={time.hours} />
+          <StatBox label="Minutes" value={time.minutes} />
+          <StatBox label="Seconds" value={time.seconds} />
         </ul>
       </div>
     </section>

@@ -5,13 +5,13 @@ import qs from 'qs'
 
 import type { Product } from '../../../payload/payload-types'
 import type { ArchiveBlockProps } from '../../_blocks/ArchiveBlock/types'
+import { useFilter } from '../../_providers/Filter'
 import { Card } from '../Card'
 import { Gutter } from '../Gutter'
 import { PageRange } from '../PageRange'
 import { Pagination } from '../Pagination'
 
 import classes from './index.module.scss'
-import { useFilter } from '../../_providers/Filter'
 
 type Result = {
   docs: (Product | string)[]
@@ -40,7 +40,7 @@ export type Props = {
 
 export const CollectionArchive: React.FC<Props> = props => {
   const { categoryFilters, sort } = useFilter()
-  
+
   const {
     className,
     limit = 10,
@@ -76,9 +76,7 @@ export const CollectionArchive: React.FC<Props> = props => {
   const isRequesting = useRef(false)
   const [page, setPage] = useState(1)
 
-  const categories = (categoryFilters || [])
-    .map((cat: string ) => cat)
-    .join(',')
+  const categories = (categoryFilters || []).map((cat: string) => cat).join(',')
 
   const scrollToRef = useCallback(() => {
     const { current } = scrollRef
@@ -180,25 +178,23 @@ export const CollectionArchive: React.FC<Props> = props => {
             />
           </div>
         )}
-          <div className={classes.grid}>
-            {results.docs?.map((result, index) => {
-              if (typeof result === 'object' && result !== null) {
-                return (
-                  <Card doc={result} relationTo={relationTo} showCategories />
-                )
-              }
+        <div className={classes.grid}>
+          {results.docs?.map((result, index) => {
+            if (typeof result === 'object' && result !== null) {
+              return <Card doc={result} relationTo={relationTo} showCategories />
+            }
 
-              return null
-            })}
-          </div>
-          {results.totalPages > 1 && populateBy !== 'selection' && (
-            <Pagination
-              className={classes.pagination}
-              onClick={setPage}
-              page={results.page}
-              totalPages={results.totalPages}
-            />
-          )}
+            return null
+          })}
+        </div>
+        {results.totalPages > 1 && populateBy !== 'selection' && (
+          <Pagination
+            className={classes.pagination}
+            onClick={setPage}
+            page={results.page}
+            totalPages={results.totalPages}
+          />
+        )}
       </Fragment>
     </div>
   )

@@ -15,7 +15,7 @@ export type Props = {
   className?: string
   type?: 'submit' | 'button'
   disabled?: boolean
-  invert?: boolean,
+  invert?: boolean
   children?: React.ReactNode
 }
 

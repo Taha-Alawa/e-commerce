@@ -1,9 +1,11 @@
-import Link from "next/link"
-import classes from "./index.module.scss"
-import { Category } from "../../../payload/payload-types"
-import CategoryCard from "./CategoryCard"
+import Link from 'next/link'
 
-const Categories = ({ categories }: {categories: Category[]}) => {
+import { Category } from '../../../payload/payload-types'
+import CategoryCard from './CategoryCard'
+
+import classes from './index.module.scss'
+
+const Categories = ({ categories }: { categories: Category[] }) => {
   return (
     <section className={classes.container}>
       <div className={classes.titleWrapper}>
@@ -11,7 +13,7 @@ const Categories = ({ categories }: {categories: Category[]}) => {
         <Link href="/products">Show All</Link>
       </div>
       <div className={classes.list}>
-        {categories.map((category) => (
+        {categories.map(category => (
           <CategoryCard key={category.id} category={category} />
         ))}
       </div>
