@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import classes from './index.module.scss'
 
@@ -46,6 +46,7 @@ const Promotion = () => {
           purchase comes with exclusive perks and offers, making this month a celebration of savvy
           choices and amazing deals. Don't miss out! 🎁🛒
         </p>
+
         <ul className={classes.stats}>
           <StatBox label="Days" value={time.days} />
           <StatBox label="Hours" value={time.hours} />
@@ -58,7 +59,7 @@ const Promotion = () => {
 }
 
 const StatBox = ({ label, value }: { label: string; value: number }) => (
-  <li className={classes.statsBox}>
+  <li className={classes.statBox}>
     <h4>{value}</h4>
     <p>{label}</p>
   </li>

@@ -1,4 +1,7 @@
 'use client'
+
+import React from 'react'
+
 import { Category } from '../../../../payload/payload-types'
 import { Checkbox } from '../../../_components/Checkbox'
 import { HR } from '../../../_components/HR'
@@ -12,12 +15,14 @@ const Filters = ({ categories }: { categories: Category[] }) => {
 
   const handleCategories = (categoryId: string) => {
     if (categoryFilters.includes(categoryId)) {
-      const newCategoryFilters = categoryFilters.filter(id => id !== categoryId)
-      setCategoryFilters(newCategoryFilters)
+      const updatedCategories = categoryFilters.filter(id => id !== categoryId)
+
+      setCategoryFilters(updatedCategories)
     } else {
       setCategoryFilters([...categoryFilters, categoryId])
     }
   }
+
   const handleSort = (value: string) => setSort(value)
 
   return (
@@ -43,7 +48,7 @@ const Filters = ({ categories }: { categories: Category[] }) => {
         <h6 className={classes.title}>Sort By</h6>
         <div className={classes.categories}>
           <RadioButton
-            label="latest"
+            label="Latest"
             value="-createdAt"
             isSelected={sort === '-createdAt'}
             onRadioChange={handleSort}
